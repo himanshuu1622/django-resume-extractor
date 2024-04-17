@@ -10,14 +10,14 @@ def index(request):
     return render(request, 'index.html', {'header': 'HOME'})
 
 def upload(request):
-    folder_path = 'C:/Users/daksh/PycharmProjects/sample/data_extraction/media/'
+    folder_path = '/sample/data_extraction/media/'
     print("",request.FILES["fileToUpload"])
     uploaded_file = request.FILES["fileToUpload"]
     resume_folder = FileSystemStorage(location=folder_path)
     filename = resume_folder.save(uploaded_file.name.replace(' ', '_').lower(), uploaded_file)
     file_url = resume_folder.url(filename)
     print(file_url)
-    name = 'C:/Users/daksh/PycharmProjects/sample/data_extraction'+file_url
+    name = '/sample/data_extraction'+file_url
     a = PyPDF2.PdfReader(name)
     page = a.pages[0]
     text = page.extract_text()
